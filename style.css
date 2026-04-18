@@ -334,7 +334,8 @@ button:focus, a.btn-call:focus, a.btn-hero-call:focus, a.btn-outline:focus {
 }
 
 .btn-hero-call:hover {
-    background: #e68a00;
+    background: #ff9800;
+    color: #000;
 }
 
 .hero-features {
@@ -409,7 +410,7 @@ button:focus, a.btn-call:focus, a.btn-hero-call:focus, a.btn-outline:focus {
 
 .btn-outline:hover {
     background: var(--primary-color);
-    color: white;
+    color: #000;
 }
 
 .box-call {
@@ -1578,7 +1579,8 @@ footer h3 {
 }
 
 .btn-submit:hover {
-    background: #e68a00;
+    background: #ff9800;
+    color: #000;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
 }
@@ -1980,8 +1982,6 @@ footer h3 {
 
 
 
-@media (max-width: 768px) {
-
 /* Custom AOS Replacement */
 [data-aos-custom] {
     opacity: 0;
@@ -2014,8 +2014,8 @@ footer h3 {
 
 /* Enhanced Slider Nav */
 
-
-
-
 @media (max-width: 768px) {
+    .slider-dots {
+        bottom: 20px;
+    }
 }
