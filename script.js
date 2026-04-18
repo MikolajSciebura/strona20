@@ -295,17 +295,22 @@ function initCustomSlider(sliderSelector) {
     }
 
     let scrollTimeout;
+    let isScrolling = false;
+
     track.addEventListener('scroll', () => {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-            const index = Math.round(track.scrollLeft / itemWidth);
-            const maxIndex = getMaxIndex();
-            const newIndex = Math.min(index, maxIndex);
-            if (newIndex !== currentIndex) {
-                currentIndex = newIndex;
-                updatePagination(currentIndex);
-            }
-        }, 100);
+        if (!isScrolling) {
+            window.requestAnimationFrame(() => {
+                const index = Math.round(track.scrollLeft / itemWidth);
+                const maxIndex = getMaxIndex();
+                const newIndex = Math.min(index, maxIndex);
+                if (newIndex !== currentIndex) {
+                    currentIndex = newIndex;
+                    updatePagination(currentIndex);
+                }
+                isScrolling = false;
+            });
+            isScrolling = true;
+        }
     }, { passive: true });
 
     function startAutoplay() {
