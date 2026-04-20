@@ -214,6 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCustomSlider('.testimonials-slider');
     initCustomSlider(".buys-slider");
     initCustomAOS();
+    initFAQ();
 
     // 7. Defer non-critical CSS (Final Optimization)
     const links = document.querySelectorAll('link[media="print"]');
@@ -372,6 +373,35 @@ function loadGTMOnInteraction() {
 ['touchstart', 'mousemove', 'scroll', 'keydown'].forEach(event => {
     window.addEventListener(event, loadGTMOnInteraction, { passive: true });
 });
+
+/**
+ * FAQ Accordion Logic
+ */
+function initFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        if (!question) return;
+
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            // Close other items (optional, but cleaner)
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    const otherBtn = otherItem.querySelector('.faq-question');
+                    if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Toggle current item
+            item.classList.toggle('active');
+            question.setAttribute('aria-expanded', !isActive);
+        });
+    });
+}
 
 /**
  * Custom IntersectionObserver Animation Logic
